@@ -1,0 +1,61 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+{% block body %}
+
+<div class="layout">
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+    <div class="container">
+        <div class="left">
+            <div class="log"><div class="logpic"><img src="{%static 'mail/img/crux.jpeg'%}"></div></div>
+            
+            <span><h2>Welcome back !</h2><br>
+                <p>Thanks for joining us. </p>
+                <p>Your inbox is ready — let's make communication smoother together.</p>
+                </span></div>
+                <div class="right" id="right1">
+                    <form action="{% url 'login'%}" method="post">
+                        {%csrf_token%}
+                    <div class="input" style="margin-bottom :20px">
+                        <input type="email" name="email" placeholder="Email or placeholder"style="margin-bottom :1px"id="email"><br>
+                        
+                    </div>
+                    <div class="butt">
+                        <a href="{% url 'register' %}"><span class="create">Create account</a></span><button type="button" id="next" onclick="nextfun(event)">Next</button>
+                    </div>
+                
+                </div>
+                <div class="right" id="right2" style="display: none;">
+                    <div class="input">    
+                        <input type="password" name="password" id=""placeholder="password"><br>                                                                 
+                    </div>
+                    <div class="butt">
+                        <span class="forgot"><a href="">Forgot password?</a></span> <input type="submit" value="Log in">
+                    </div>
+                </div>
+            </form>
+            </div>
+
+        
+    </div>
+    <div class="lang">
+        <div class="right">
+            <select name="" >
+                <option value="">English</option>
+                <option value="">Creole</option>
+                <option value="">Kiswahili</option>
+            </select>
+        </div>
+        <div class="left">
+            <a href="home.html">Guest mode</a>
+        </div>
+    </div>
+   </div>
+   
+</body>
+
+{% endblock %}
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}

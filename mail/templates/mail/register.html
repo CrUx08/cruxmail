@@ -1,0 +1,46 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+{% block body %}
+
+<div class="layout">
+    {% if message %}
+    <div>{{ message }}</div>
+{% endif %}
+    <div class="container">
+        <div class="left">
+            <div class="log"><div class="logpic"><img src="{% static 'mail/img/crux.jpeg'%}"></div></div>
+            
+            <span><h2>Welcome to Crux Mail</h2><br>
+                <p>We're thrilled to have you on board!</p>
+                <p>Crux Mail is your new home for fast, secure, and clutter-free communication. Whether you're connecting with clients, colleagues, or friends </p>
+                 <p>have account? <a href="{% url 'login'%}" style="margin-left: 10px;">log in</a></p>
+                </span></div>
+        <div class="right" id="right1">
+            <h3>Create Your account</h3>
+            <form action="{%url 'register'%}" method="post" id="auth-form">
+                {%csrf_token%}
+            <div class="input" style="margin-bottom :20px">
+                <input type="email" name="email" placeholder="Email or placeholder"style="margin-bottom :1px"id="email"><br>
+                <input type="password" name="password" placeholder="password"style="margin-bottom :1px">
+                
+            </div>
+            <div class="butt">
+                <button type="button" onclick="nextfun(event)" style="margin-left: -2px; width: 50%;"id="next">Next</button>
+            </div>
+        </div>
+        <div class="right" id="right2" style="display: none;">
+            <div class="input">    
+                <input type="password" name="confirmation" placeholder="confirmation password"><br>                                                                 
+            </div>
+            <div class="butt">
+                <input type="submit" value="Create account" style="margin-left: -20px;">
+            </div>
+        </div>
+    </form>
+    </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}

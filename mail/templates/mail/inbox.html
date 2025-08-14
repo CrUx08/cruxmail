@@ -1,0 +1,102 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="profile">
+    <img src="{% static 'mail/img/86A7C5DC-0E87-46AD-8782-4B7C3DCAB2CC.JPG'%}" alt="" class="user"><br><br>
+    {{ request.user.email }}<br><br>
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+</div>
+   
+    <header class="header">
+        <div class="top-left flex">
+            <div class="menu">
+                <span class="icon"></span>
+                <span class="icon"></span>
+                <span class="icon"></span></div>
+         
+         
+         <span class="mail-text">Crux mail</span>
+             </div>
+        <div class="middle-area">
+            <div class="search">
+                <ion-icon name="search-outline" class="hover"></ion-icon>
+                <input type="text" placeholder="Search mail" >
+                <ion-icon name="options"></ion-icon>
+            </div>
+        </div>
+        <div class="right-area flex" id="right">
+            <ion-icon name="help-circle-outline" class="hover"></ion-icon>
+            <ion-icon name="settings" class="hover"></ion-icon>
+            <ion-icon name="apps" class="hover"></ion-icon>
+            <img src="{% static 'mail/img/86A7C5DC-0E87-46AD-8782-4B7C3DCAB2CC.JPG'%}" alt="" class="user"onclick="profile()">
+        </div>
+       </header>
+
+       <div class="center">
+        <nav class="nav">
+            <div class="navcont">
+                <div class="navtop">
+                    <span class="compose" id="compose"><ion-icon name="pencil"></ion-icon> Compose</span>
+                </div>
+                <div class="navlist">
+                    <ul>
+                        <li id="inbox">
+                            <ion-icon name="image-outline"></ion-icon>Inbox
+                        </li>
+                        <li>
+                            <ion-icon name="star-outline"></ion-icon> starred
+                        </li>
+                        <li id="archived"><ion-icon name="archive-outline"></ion-icon>Archived</li> 
+                        <li id="sent"><ion-icon name="send-outline"></ion-icon>Sent</li> 
+                        <li><ion-icon name="document-outline"></ion-icon>Drafts</li>
+                    </ul>
+                </div>
+            </div>
+           </nav>
+           <main class="main_content">
+            <div class="compose-container">
+                <div class="compose-top"><div class="compleft"><label for="">new email</label></div>
+                <div class="compright"><ion-icon name="resize"onclick="resize()"></ion-icon><ion-icon name="close"style="margin-left:5%;"onclick="closecomp()"id="ion"></ion-icon></div></div>
+               <div class="main-form">
+                <form id="compose-form">
+                    <div class="form-group">
+                     <div class="form-input"><input disabled  value="{{request.user.email}}"></div>
+                    </div>
+                    <div class="form-group">
+                   <div class="form-input"> <input id="compose-recipients" placeholder="recipient"> </div> </div>
+                    <div class="form-group">
+                       <div class="form-input"><input class="" id="compose-subject" placeholder="Subject"></div>
+                    </div>
+                   <div class="composebottom">
+                    <textarea  id="compose-body" autofocus ></textarea>
+                    <input type="submit" value="Send"class="send"onclick="sendmail(event)"/>
+                   </div>
+                </form>
+               </div>
+            </div>
+            <div class="top">  
+                <div class="mailbox-left"style=" font-size: small;">
+                      
+                  </div>
+                  <div class="right">
+                    1-50 of 70
+                  </div> </div>
+                 <div class="messagearea">
+                    
+                 </div>
+                 
+           </main>
+         
+       </div>
+       <div class="nomessages"style="display: none;">
+        <div class="text"><p>No mailbox messages <br> <span onclick="compose_email()">Compose email</span></p></div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>const userprof = "{% static 'mail/img/86A7C5DC-0E87-46AD-8782-4B7C3DCAB2CC.JPG'%}";</script>
+    <script src="{% static 'mail/inbox.js' %}">
+        
+    </script>
+{% endblock %}
